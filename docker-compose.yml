@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  db:
+    image: my-postgres-db
+    ports:
+      - '5432:5432'
+  web:
+    image: web-node
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+  api:
+    image: conexionpg
+    expose:
+      - '7000'
+    ports:
+      - '7000:7000'
+    depends_on:
+      - db
